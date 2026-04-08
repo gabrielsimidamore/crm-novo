@@ -249,6 +249,52 @@ tbody tr:hover td{background:rgba(99,102,241,.04)}
 .glow-green{box-shadow:0 0 0 1px rgba(52,211,153,.15),0 4px 24px rgba(52,211,153,.06)}
 .glow-orange{box-shadow:0 0 0 1px rgba(251,191,36,.15),0 4px 24px rgba(251,191,36,.06)}
 
+/* ── META PAGE SPECIFIC ── */
+.meta-page-header{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.meta-logo-badge{display:flex;align-items:center;gap:8px}
+.meta-logo-text{font-size:18px;font-weight:900;color:#fff;letter-spacing:-.5px}
+.meta-divider{width:1px;height:24px;background:var(--border2);margin:0 4px}
+.meta-report-title{font-size:13px;font-weight:500;color:var(--text2)}
+.meta-report-title span{color:var(--text3)}
+.meta-filters{margin-left:auto;display:flex;align-items:center;gap:6px}
+.meta-icon-btn{width:30px;height:30px;border-radius:6px;background:rgba(24,119,242,.12);border:1px solid rgba(24,119,242,.2);color:var(--meta2);display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:var(--transition)}
+.meta-icon-btn:hover{background:rgba(24,119,242,.2)}
+.meta-filter-select{background:rgba(24,119,242,.08);border:1px solid rgba(24,119,242,.2);color:var(--meta2);padding:5px 28px 5px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;font-family:'Inter',system-ui,sans-serif;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' fill='none'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%234fa3ff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
+.meta-period-badge{background:rgba(24,119,242,.12);border:1px solid rgba(24,119,242,.2);color:var(--meta2);padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700}
+
+/* KPI Card with sparkline */
+.kpi-with-spark{padding:0}
+.kpi-spark-top{padding:16px 18px 8px}
+.kpi-spark-canvas{width:100%;height:52px;display:block;margin-top:4px}
+.kpi-spark-val{font-size:24px;font-weight:800;letter-spacing:-1px;line-height:1.1}
+.kpi-change-row{display:flex;align-items:center;gap:6px;padding:0 18px 14px}
+
+/* SVG Funnel container */
+.funnel-svg-wrap{position:relative;display:flex;gap:0}
+.funnel-svg-col{flex:1;display:flex;align-items:center;justify-content:center}
+.funnel-rates-col{width:130px;display:flex;flex-direction:column;justify-content:space-around;padding:10px 0 10px 8px;gap:0}
+.funnel-rate-item{display:flex;flex-direction:column;gap:2px}
+.funnel-rate-label{font-size:10px;color:var(--text3);white-space:nowrap}
+.funnel-rate-value{font-size:13px;font-weight:800;color:var(--text);white-space:nowrap}
+.funnel-bottom-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;border-top:1px solid var(--border);margin-top:12px;background:var(--border)}
+.funnel-stat-item{background:var(--card);padding:10px 12px;text-align:center}
+.funnel-stat-val{font-size:14px;font-weight:800;color:var(--text)}
+.funnel-stat-lbl{font-size:9px;color:var(--text3);margin-top:2px;letter-spacing:.3px}
+
+/* Meta right panel */
+.meta-metric-block{margin-bottom:12px}
+.meta-metric-label{font-size:11px;color:var(--text3);margin-bottom:4px;display:flex;align-items:center;justify-content:space-between}
+.meta-metric-value{font-size:22px;font-weight:800;letter-spacing:-.8px;margin-bottom:6px}
+.meta-metric-chg{font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px}
+.meta-metric-bar{height:8px;border-radius:4px;background:var(--border);overflow:hidden;position:relative}
+.meta-metric-bar-fill{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.4,0,.2,1);position:relative}
+.meta-metric-bar-fill::after{content:'';position:absolute;top:0;right:0;width:6px;height:100%;background:rgba(255,255,255,.3);border-radius:3px}
+
+/* Campaign table - image style */
+.camp-invest-cell{position:relative;padding:10px 14px}
+.camp-invest-bar{position:absolute;left:0;top:0;bottom:0;background:rgba(24,119,242,.2);z-index:0;border-radius:0 4px 4px 0}
+.camp-invest-value{position:relative;z-index:1;font-weight:700;color:var(--meta2)}
+
 /* ── STAT CHIP ── */
 .stat-chip{background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:12px 14px}
 .sc-val{font-size:18px;font-weight:800;letter-spacing:-.8px}
@@ -494,90 +540,261 @@ tbody tr:hover td{background:rgba(99,102,241,.04)}
 
     <!-- ══════════ META ADS ══════════ -->
     <div class="page" id="page-meta">
-      <div class="s-head">
-        <div>
-          <div class="s-title" style="color:var(--meta2)">∞ Meta Ads</div>
-          <div class="s-sub">Funil de tráfego · Taxas de conversão · Campanhas</div>
+
+      <!-- Sub-header estilo imagem -->
+      <div class="meta-page-header">
+        <div class="meta-logo-badge">
+          <svg width="26" height="16" viewBox="0 0 26 16" fill="none"><path d="M13 8c0-4.418 2.239-8 5-8s5 3.582 5 8-2.239 8-5 8-5-3.582-5-8zM0 8C0 3.582 2.239 0 5 0s5 3.582 5 8-2.239 8-5 8S0 12.418 0 8z" fill="url(#metalogo)"/><defs><linearGradient id="metalogo" x1="0" y1="8" x2="26" y2="8" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#0064e0"/><stop offset="50%" stop-color="#0082fb"/><stop offset="100%" stop-color="#00b2ff"/></linearGradient></defs></svg>
+          <span class="meta-logo-text" style="font-size:15px;color:#4fa3ff">Meta</span>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-report-title">Relatório Meta Ads | <span id="meta-empresa-name">Nome da Empresa</span></div>
+        <div class="meta-filters">
+          <div class="meta-icon-btn" title="Filtrar">⇅</div>
+          <div class="meta-icon-btn" title="Exportar">↓</div>
+          <select class="meta-filter-select"><option>Campanhas</option></select>
+          <select class="meta-filter-select"><option>Anúncios</option></select>
+          <div class="meta-period-badge">Ago 2025</div>
         </div>
       </div>
 
+      <!-- 4 KPI Cards com Sparklines -->
       <div class="g g4" style="margin-bottom:14px">
-        <div class="card kpi-card glow-blue">
-          <div class="kpi-accent" style="background:linear-gradient(90deg,var(--meta),var(--meta2))"></div>
-          <div class="kpi-top"><div class="kpi-label">Investimento</div><div class="kpi-icon-wrap" style="background:rgba(24,119,242,.12)">💸</div></div>
-          <div class="kpi-value" style="color:var(--meta2)" id="m-invest">—</div>
-          <div class="kpi-footer"><span class="kpi-change down">↓ 16.9%</span><span class="kpi-ref">vs. anterior</span></div>
+        <!-- Investimento -->
+        <div class="card kpi-with-spark" style="overflow:hidden">
+          <div class="kpi-spark-top">
+            <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.8px;margin-bottom:8px">INVESTIMENTO</div>
+            <div class="kpi-spark-val" style="color:var(--meta2)" id="m-invest">—</div>
+          </div>
+          <canvas class="kpi-spark-canvas" id="spark-invest"></canvas>
+          <div class="kpi-change-row">
+            <span class="kpi-change down" id="m-invest-chg">↓ 16.9%</span>
+            <span style="font-size:10px;color:var(--text3)">vs. período ant.</span>
+          </div>
         </div>
-        <div class="card kpi-card glow-green">
-          <div class="kpi-accent" style="background:linear-gradient(90deg,var(--green),var(--green2))"></div>
-          <div class="kpi-top"><div class="kpi-label">Faturamento</div><div class="kpi-icon-wrap" style="background:rgba(16,185,129,.12)">💰</div></div>
-          <div class="kpi-value" style="color:var(--green2)" id="m-fatur">—</div>
-          <div class="kpi-footer"><span class="kpi-change up">↑ 15.4%</span><span class="kpi-ref">vs. anterior</span></div>
+        <!-- Faturamento -->
+        <div class="card kpi-with-spark" style="overflow:hidden">
+          <div class="kpi-spark-top">
+            <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.8px;margin-bottom:8px">FATURAMENTO</div>
+            <div class="kpi-spark-val" style="color:var(--green2)" id="m-fatur">—</div>
+          </div>
+          <canvas class="kpi-spark-canvas" id="spark-fatur"></canvas>
+          <div class="kpi-change-row">
+            <span class="kpi-change up" id="m-fatur-chg">↑ 15.4%</span>
+            <span style="font-size:10px;color:var(--text3)">vs. período ant.</span>
+          </div>
         </div>
-        <div class="card kpi-card">
-          <div class="kpi-accent" style="background:linear-gradient(90deg,var(--cyan),var(--purple))"></div>
-          <div class="kpi-top"><div class="kpi-label">Compras</div><div class="kpi-icon-wrap" style="background:rgba(6,182,212,.12)">🛒</div></div>
-          <div class="kpi-value" style="color:var(--cyan2)" id="m-compras">—</div>
-          <div class="kpi-footer"><span class="kpi-change up">↑ 14.1%</span><span class="kpi-ref">vs. anterior</span></div>
+        <!-- Compras -->
+        <div class="card kpi-with-spark" style="overflow:hidden">
+          <div class="kpi-spark-top">
+            <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.8px;margin-bottom:8px">COMPRAS</div>
+            <div class="kpi-spark-val" style="color:var(--cyan2)" id="m-compras">—</div>
+          </div>
+          <canvas class="kpi-spark-canvas" id="spark-compras"></canvas>
+          <div class="kpi-change-row">
+            <span class="kpi-change up">↑ 14.8%</span>
+            <span style="font-size:10px;color:var(--text3)">vs. período ant.</span>
+          </div>
         </div>
-        <div class="card kpi-card glow-orange">
-          <div class="kpi-accent" style="background:linear-gradient(90deg,var(--orange),var(--red))"></div>
-          <div class="kpi-top"><div class="kpi-label">ROAS Médio</div><div class="kpi-icon-wrap" style="background:rgba(245,158,11,.12)">🎯</div></div>
-          <div class="kpi-value" style="color:var(--orange2);font-size:32px" id="m-roas">—</div>
-          <div class="kpi-footer"><span class="kpi-change down">↓ 1.3%</span><span class="kpi-ref">retorno por R$1</span></div>
+        <!-- ROAS -->
+        <div class="card kpi-with-spark" style="overflow:hidden">
+          <div class="kpi-spark-top">
+            <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.8px;margin-bottom:8px">ROAS MÉDIO</div>
+            <div class="kpi-spark-val" style="color:var(--orange2);font-size:30px" id="m-roas">—</div>
+          </div>
+          <canvas class="kpi-spark-canvas" id="spark-roas"></canvas>
+          <div class="kpi-change-row">
+            <span class="kpi-change down">↓ 1.3%</span>
+            <span style="font-size:10px;color:var(--text3)">retorno por R$ 1</span>
+          </div>
         </div>
       </div>
 
-      <div class="g g-12" style="margin-bottom:14px">
-        <!-- FUNNEL -->
-        <div class="card card-p">
-          <div class="card-header"><div class="card-title">Funil de Tráfego</div></div>
-          <div class="funnel" id="funnel-container">
-            <div class="loading-state"><div class="spin"></div>Carregando...</div>
-          </div>
-        </div>
+      <!-- MAIN PANEL: Funnel + Right metrics -->
+      <div style="display:grid;grid-template-columns:320px 1fr;gap:14px;margin-bottom:14px">
 
-        <!-- Right col -->
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <!-- checkouts bar chart -->
-          <div class="card card-p">
-            <div class="card-header">
-              <div class="card-title">Checkouts Iniciados</div>
-              <div style="font-size:22px;font-weight:800;color:var(--meta2)" id="m-checkouts">—</div>
+        <!-- FUNNEL (esquerda) -->
+        <div class="card" style="overflow:hidden">
+          <div style="padding:14px 16px 10px;border-bottom:1px solid var(--border)">
+            <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.8px;text-transform:uppercase">Funil de Tráfego</div>
+          </div>
+          <div style="padding:16px 12px 0">
+            <div class="funnel-svg-wrap">
+              <!-- SVG Cone Funnel -->
+              <div class="funnel-svg-col">
+                <svg id="meta-funnel-svg" viewBox="0 0 240 360" style="width:100%;max-width:200px" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="fg-h" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#0a3d8f"/>
+                      <stop offset="18%" stop-color="#1252bc"/>
+                      <stop offset="50%" stop-color="#2078f0"/>
+                      <stop offset="82%" stop-color="#1252bc"/>
+                      <stop offset="100%" stop-color="#0a3d8f"/>
+                    </linearGradient>
+                    <linearGradient id="fg-h2" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#08347a"/>
+                      <stop offset="18%" stop-color="#1045a8"/>
+                      <stop offset="50%" stop-color="#1a68dc"/>
+                      <stop offset="82%" stop-color="#1045a8"/>
+                      <stop offset="100%" stop-color="#08347a"/>
+                    </linearGradient>
+                    <linearGradient id="fg-h3" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#062a63"/>
+                      <stop offset="18%" stop-color="#0d3892"/>
+                      <stop offset="50%" stop-color="#1558c8"/>
+                      <stop offset="82%" stop-color="#0d3892"/>
+                      <stop offset="100%" stop-color="#062a63"/>
+                    </linearGradient>
+                    <linearGradient id="fg-h4" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#051f4a"/>
+                      <stop offset="18%" stop-color="#0a2c76"/>
+                      <stop offset="50%" stop-color="#1248b0"/>
+                      <stop offset="82%" stop-color="#0a2c76"/>
+                      <stop offset="100%" stop-color="#051f4a"/>
+                    </linearGradient>
+                    <linearGradient id="fg-shine" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+                      <stop offset="40%" stop-color="rgba(255,255,255,0.05)"/>
+                      <stop offset="50%" stop-color="rgba(255,255,255,0.10)"/>
+                      <stop offset="60%" stop-color="rgba(255,255,255,0.05)"/>
+                      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                    </linearGradient>
+                    <filter id="shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,100,255,.3)"/></filter>
+                  </defs>
+                  <!-- Section 1: Cliques (y 0-82) -->
+                  <path d="M 8,4 L 232,4 L 210,82 L 30,82 Z" fill="url(#fg-h)" rx="4"/>
+                  <path d="M 8,4 L 232,4 L 235,14 L 5,14 Z" fill="url(#fg-shine)"/>
+                  <ellipse cx="120" cy="4" rx="112" ry="7" fill="rgba(32,120,240,.5)" stroke="rgba(79,163,255,.3)" stroke-width="1"/>
+                  <!-- Divider 1 -->
+                  <line x1="30" y1="84" x2="210" y2="84" stroke="rgba(5,30,80,.8)" stroke-width="2.5"/>
+                  <!-- Section 2: Page Views (y 86-162) -->
+                  <path d="M 30,86 L 210,86 L 188,162 L 52,162 Z" fill="url(#fg-h2)"/>
+                  <path d="M 30,86 L 210,86 L 213,96 L 27,96 Z" fill="url(#fg-shine)"/>
+                  <!-- Divider 2 -->
+                  <line x1="52" y1="164" x2="188" y2="164" stroke="rgba(5,30,80,.8)" stroke-width="2.5"/>
+                  <!-- Section 3: Checkouts (y 166-240) -->
+                  <path d="M 52,166 L 188,166 L 165,240 L 75,240 Z" fill="url(#fg-h3)"/>
+                  <path d="M 52,166 L 188,166 L 191,176 L 49,176 Z" fill="url(#fg-shine)"/>
+                  <!-- Divider 3 -->
+                  <line x1="75" y1="242" x2="165" y2="242" stroke="rgba(5,30,80,.8)" stroke-width="2.5"/>
+                  <!-- Section 4: Compras (y 244-330) -->
+                  <path d="M 75,244 L 165,244 L 145,330 L 95,330 Z" fill="url(#fg-h4)"/>
+                  <path d="M 75,244 L 165,244 L 168,254 L 72,254 Z" fill="url(#fg-shine)"/>
+                  <!-- Bottom ellipse -->
+                  <ellipse cx="120" cy="330" rx="25" ry="5" fill="rgba(5,20,60,.9)" stroke="rgba(79,163,255,.15)" stroke-width="1"/>
+
+                  <!-- Labels: Section 1 Cliques -->
+                  <text x="120" y="36" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="10" font-family="Inter,sans-serif" font-weight="500" letter-spacing="0.5">Cliques</text>
+                  <text x="120" y="62" text-anchor="middle" fill="white" font-size="22" font-family="Inter,sans-serif" font-weight="800" id="fn-v1">7K</text>
+                  <!-- Labels: Section 2 Page Views -->
+                  <text x="120" y="111" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="10" font-family="Inter,sans-serif" font-weight="500" letter-spacing="0.5">Page Views</text>
+                  <text x="120" y="138" text-anchor="middle" fill="white" font-size="22" font-family="Inter,sans-serif" font-weight="800" id="fn-v2">7K</text>
+                  <!-- Labels: Section 3 Checkouts -->
+                  <text x="120" y="190" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="10" font-family="Inter,sans-serif" font-weight="500" letter-spacing="0.5">Checkouts</text>
+                  <text x="120" y="218" text-anchor="middle" fill="white" font-size="20" font-family="Inter,sans-serif" font-weight="800" id="fn-v3">1.907</text>
+                  <!-- Labels: Section 4 Compras -->
+                  <text x="120" y="272" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="10" font-family="Inter,sans-serif" font-weight="500" letter-spacing="0.5">Compras</text>
+                  <text x="120" y="302" text-anchor="middle" fill="white" font-size="22" font-family="Inter,sans-serif" font-weight="800" id="fn-v4">582</text>
+                </svg>
+              </div>
+              <!-- Rate tags to the right -->
+              <div class="funnel-rates-col">
+                <div class="funnel-rate-item" style="margin-top:8px">
+                  <div class="funnel-rate-label">Taxa de Cliques</div>
+                  <div class="funnel-rate-value" id="fn-ctr" style="color:var(--text2)">0.91%</div>
+                </div>
+                <div class="funnel-rate-item" style="margin-top:32px">
+                  <div class="funnel-rate-label">Connect Rate</div>
+                  <div class="funnel-rate-value" id="fn-connect" style="color:var(--text2)">91.69%</div>
+                </div>
+                <div class="funnel-rate-item" style="margin-top:32px">
+                  <div class="funnel-rate-label">Taxa de Checkout</div>
+                  <div class="funnel-rate-value" id="fn-tcheck" style="color:var(--text2)">28.34%</div>
+                </div>
+                <div class="funnel-rate-item" style="margin-top:28px">
+                  <div class="funnel-rate-label">Taxa de Compras</div>
+                  <div class="funnel-rate-value" id="fn-tcompras" style="color:var(--text2)">30.52%</div>
+                </div>
+              </div>
             </div>
-            <div class="chart-wrap" style="height:110px"><canvas id="c-meta-bar"></canvas></div>
           </div>
-          <!-- Taxas -->
-          <div class="card card-p" style="flex:1">
-            <div class="card-header"><div class="card-title">Taxas e Custos</div></div>
-            <div class="metric-row"><span class="mr-label">CTR (Taxa de Cliques)</span><span class="mr-value" id="m-ctr">—</span></div>
-            <div class="metric-row"><span class="mr-label">Connect Rate</span><span class="mr-value" style="color:var(--green2)" id="m-connect">—</span></div>
-            <div class="metric-row"><span class="mr-label">Taxa de Checkout</span><span class="mr-value" id="m-tcheck">—</span></div>
-            <div class="metric-row"><span class="mr-label">Taxa de Compras</span><span class="mr-value" id="m-tcompras">—</span></div>
-            <div class="metric-row"><span class="mr-label">Custo / Checkout</span><span class="mr-value" id="m-cpc-check">—</span></div>
-            <div class="metric-row"><span class="mr-label">CPM</span><span class="mr-value" id="m-cpm">—</span></div>
-            <div class="metric-row"><span class="mr-label">Frequência</span><span class="mr-value" id="m-freq">—</span></div>
+          <!-- Bottom stats: Add to Cart | Frequência | CPM -->
+          <div class="funnel-bottom-stats">
+            <div class="funnel-stat-item">
+              <div class="funnel-stat-val" style="color:var(--text3)">0</div>
+              <div class="funnel-stat-lbl">ADD TO CART</div>
+            </div>
+            <div class="funnel-stat-item">
+              <div class="funnel-stat-val" id="fn-freq">3.64</div>
+              <div class="funnel-stat-lbl">FREQUÊNCIA</div>
+            </div>
+            <div class="funnel-stat-item">
+              <div class="funnel-stat-val" id="fn-cpm" style="color:var(--meta2)">—</div>
+              <div class="funnel-stat-lbl">CPM</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Campanhas table -->
-      <div class="card">
-        <div class="card-header card-p" style="margin-bottom:0;border-bottom:1px solid var(--border)">
-          <div class="card-title">Campanhas Meta Ads</div>
-          <span class="badge b-blue" id="meta-cnt">— campanhas</span>
-        </div>
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th><th>Campanha</th><th>Conjunto</th>
-              <th>Investimento</th><th>Faturamento</th><th>Compras</th>
-              <th>ROAS</th><th>CTR</th><th>CPC</th><th>Status</th>
-            </tr></thead>
-            <tbody id="meta-tbody">
-              <tr><td colspan="10"><div class="loading-state"><div class="spin"></div>Carregando...</div></td></tr>
-            </tbody>
-          </table>
+        <!-- RIGHT PANEL -->
+        <div style="display:flex;flex-direction:column;gap:14px">
+
+          <!-- Checkouts + Chart row -->
+          <div style="display:grid;grid-template-columns:200px 1fr;gap:14px">
+            <!-- Checkouts + Custo -->
+            <div class="card card-p" style="display:flex;flex-direction:column;justify-content:center;gap:18px">
+              <!-- Checkouts Iniciados -->
+              <div class="meta-metric-block">
+                <div class="meta-metric-label">
+                  Checkouts Iniciados
+                  <span class="meta-metric-chg" style="background:rgba(16,185,129,.12);color:var(--green2)" id="m-check-chg">↑ 108.2%</span>
+                </div>
+                <div class="meta-metric-value" style="color:var(--meta2)" id="m-checkouts">—</div>
+                <div class="meta-metric-bar">
+                  <div class="meta-metric-bar-fill" style="width:75%;background:linear-gradient(90deg,#22c55e,#4ade80)"></div>
+                </div>
+              </div>
+              <!-- Custo por Checkout -->
+              <div class="meta-metric-block">
+                <div class="meta-metric-label">
+                  Custo por Checkout
+                  <span class="meta-metric-chg" style="background:rgba(245,158,11,.12);color:var(--orange2)" id="m-cpc-chg">↑ 108.0%</span>
+                </div>
+                <div class="meta-metric-value" style="color:var(--orange2)" id="m-cpc-check">—</div>
+                <div class="meta-metric-bar">
+                  <div class="meta-metric-bar-fill" style="width:58%;background:linear-gradient(90deg,#f59e0b,#fbbf24)"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Faturamento vs Compras chart -->
+            <div class="card card-p">
+              <div class="card-header" style="margin-bottom:8px">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)">
+                    <span style="width:24px;height:2px;background:var(--green2);display:inline-block;border-radius:2px"></span>Faturamento
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)">
+                    <span style="width:24px;height:2px;background:var(--orange2);display:inline-block;border-radius:2px"></span>Compras
+                  </div>
+                </div>
+              </div>
+              <div style="height:140px"><canvas id="c-meta-dual"></canvas></div>
+            </div>
+          </div>
+
+          <!-- Campanhas table -->
+          <div class="card" style="flex:1">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+              <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.8px;text-transform:uppercase">Campanhas</div>
+              <div style="display:flex;gap:40px;font-size:10px;font-weight:700;color:var(--text4);letter-spacing:.8px;text-transform:uppercase">
+                <span>Conjuntos</span>
+                <span>Anúncios</span>
+                <span style="min-width:80px;text-align:right">Investimento</span>
+              </div>
+            </div>
+            <div id="meta-camp-list" style="max-height:230px;overflow-y:auto">
+              <div class="loading-state"><div class="spin"></div>Carregando...</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1066,79 +1283,152 @@ function renderOrigem(){
 // ── META PAGE ──
 function renderMetaPage(m){
   if(!m)return;
-  set('m-invest',R(m.meta_investimento));set('m-fatur',R(m.meta_faturamento));
-  set('m-compras',N(m.meta_compras));set('m-roas',Number(m.meta_roas||0).toFixed(1));
+  set('m-invest',R(m.meta_investimento));
+  set('m-fatur',R(m.meta_faturamento));
+  set('m-compras',N(m.meta_compras));
+  set('m-roas',Number(m.meta_roas||0).toFixed(1));
   set('m-checkouts',N(m.meta_checkouts_iniciados));
-  set('m-ctr',P(m.meta_taxa_cliques));set('m-connect',P(m.meta_connect_rate));
-  set('m-tcheck',P(m.meta_taxa_checkout));set('m-tcompras',P(m.meta_taxa_compras));
-  const cco=m.meta_checkouts_iniciados?(m.meta_investimento/m.meta_checkouts_iniciados).toFixed(2):0;
-  set('m-cpc-check','R$ '+cco);
-  set('m-cpm',R(m.meta_cpm));set('m-freq',Number(m.meta_frequencia||0).toFixed(2));
-  renderFunnel(m);
-  renderMetaBar(m);
+  const cco=m.meta_checkouts_iniciados?R(m.meta_investimento/m.meta_checkouts_iniciados):R(0);
+  set('m-cpc-check',cco);
+  set('fn-cpm',R(m.meta_cpm));
+  set('fn-freq',Number(m.meta_frequencia||0).toFixed(2));
+  // Funnel SVG labels
+  const fmtK=v=>v>=1000?(v/1000).toFixed(0)+'K':N(v);
+  setSVG('fn-v1',fmtK(m.meta_cliques));
+  setSVG('fn-v2',fmtK(m.meta_page_views));
+  setSVG('fn-v3',N(m.meta_checkouts_iniciados));
+  setSVG('fn-v4',N(m.meta_compras));
+  // Rate tags
+  set('fn-ctr',P(m.meta_taxa_cliques));
+  set('fn-connect',P(m.meta_connect_rate));
+  set('fn-tcheck',P(m.meta_taxa_checkout));
+  set('fn-tcompras',P(m.meta_taxa_compras));
+  // Sparklines
+  renderSparklines(m);
+  renderMetaDual(m);
 }
 
-function renderFunnel(m){
-  const steps=[
-    {label:'Cliques',val:m.meta_cliques,color:'rgba(24,119,242,.90)'},
-    {label:'Page Views',val:m.meta_page_views,color:'rgba(24,119,242,.72)'},
-    {label:'Checkouts',val:m.meta_checkouts_iniciados,color:'rgba(24,119,242,.54)'},
-    {label:'Compras',val:m.meta_compras,color:'rgba(24,119,242,.38)'},
-  ];
-  const max=steps[0].val||1;
-  const rates=[null,P(m.meta_connect_rate),P(m.meta_taxa_checkout),P(m.meta_taxa_compras)];
-  let html='';
-  steps.forEach((s,i)=>{
-    const w=Math.max(40,Math.round((s.val/max)*100));
-    const h=70-i*10;
-    html+=`
-    <div class="fn-step">
-      <div class="fn-side" style="text-align:right">
-        ${i>0?`<div class="fn-rate-pill">${rates[i]}</div>`:''}
-      </div>
-      <div class="fn-bar-col" style="flex:1">
-        <div class="fn-shape" style="width:${w}%;height:${h}px;background:${s.color}">
-          <div class="fn-shape-label">${s.label}</div>
-          <div class="fn-shape-val">${N(s.val)}</div>
-        </div>
-      </div>
-      <div style="width:80px"></div>
-    </div>
-    ${i<steps.length-1?'<div class="fn-connector"></div>':''}`;
-  });
-  document.getElementById('funnel-container').innerHTML=html;
+function setSVG(id,val){
+  const el=document.getElementById(id);
+  if(el)el.textContent=val;
 }
 
-function renderMetaBar(m){
-  const ws=['S1','S2','S3','S4'];
-  const tot=m.meta_checkouts_iniciados||0;
-  const vals=[tot*.22,tot*.26,tot*.28,tot*.24].map(Math.round);
-  mkChart('c-meta-bar',{
-    type:'bar',
-    data:{labels:ws,datasets:[{data:vals,backgroundColor:'rgba(24,119,242,.7)',borderRadius:6,borderSkipped:false}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{backgroundColor:'var(--card2)',borderColor:'var(--border2)',borderWidth:1}},
-      scales:{x:{grid:{display:false}},y:{grid:{color:gridColor}}}}
+function renderSparklines(m){
+  // Investimento sparkline - zigzag slightly down (red)
+  drawSparkline('spark-invest',[100,80,95,65,85,55,75,50,70,45,60,40],'#ef4444','rgba(239,68,68,.08)');
+  // Faturamento sparkline - smooth upward (green)
+  drawSparkline('spark-fatur',[30,40,35,50,45,60,55,70,65,78,72,88],'#10b981','rgba(16,185,129,.08)');
+  // Compras sparkline - moderate up (cyan)
+  drawSparkline('spark-compras',[50,60,45,65,55,70,60,78,68,80,72,85],'#06b6d4','rgba(6,182,212,.08)');
+  // ROAS sparkline - multicolor flat with variation
+  drawSparklineMulti('spark-roas',[55,60,52,65,58,62,55,68,60,65,58,63]);
+}
+
+function drawSparkline(id,data,stroke,fill){
+  const canvas=document.getElementById(id);
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.offsetWidth||canvas.parentElement.offsetWidth||200;
+  const H=52;
+  canvas.width=W;canvas.height=H;
+  const min=Math.min(...data),max=Math.max(...data),range=max-min||1;
+  const pts=data.map((v,i)=>({x:i*(W/(data.length-1)),y:H-((v-min)/range)*(H-8)-4}));
+  ctx.clearRect(0,0,W,H);
+  // Fill
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x,pts[0].y);
+  for(let i=1;i<pts.length;i++){
+    const cx=(pts[i-1].x+pts[i].x)/2;
+    ctx.bezierCurveTo(cx,pts[i-1].y,cx,pts[i].y,pts[i].x,pts[i].y);
+  }
+  ctx.lineTo(pts[pts.length-1].x,H);
+  ctx.lineTo(pts[0].x,H);
+  ctx.closePath();
+  const grad=ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0,fill.replace('.08','0.15'));
+  grad.addColorStop(1,fill.replace('.08','0'));
+  ctx.fillStyle=grad;
+  ctx.fill();
+  // Line
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x,pts[0].y);
+  for(let i=1;i<pts.length;i++){
+    const cx=(pts[i-1].x+pts[i].x)/2;
+    ctx.bezierCurveTo(cx,pts[i-1].y,cx,pts[i].y,pts[i].x,pts[i].y);
+  }
+  ctx.strokeStyle=stroke;
+  ctx.lineWidth=1.5;
+  ctx.stroke();
+}
+
+function drawSparklineMulti(id,data){
+  const canvas=document.getElementById(id);
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.offsetWidth||canvas.parentElement.offsetWidth||200;
+  const H=52;
+  canvas.width=W;canvas.height=H;
+  const min=Math.min(...data),max=Math.max(...data),range=max-min||1;
+  const pts=data.map((v,i)=>({x:i*(W/(data.length-1)),y:H-((v-min)/range)*(H-8)-4}));
+  ctx.clearRect(0,0,W,H);
+  // Gradient line
+  const grad=ctx.createLinearGradient(0,0,W,0);
+  grad.addColorStop(0,'#818cf8');
+  grad.addColorStop(0.5,'#22d3ee');
+  grad.addColorStop(1,'#fbbf24');
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x,pts[0].y);
+  for(let i=1;i<pts.length;i++){
+    const cx=(pts[i-1].x+pts[i].x)/2;
+    ctx.bezierCurveTo(cx,pts[i-1].y,cx,pts[i].y,pts[i].x,pts[i].y);
+  }
+  ctx.strokeStyle=grad;
+  ctx.lineWidth=1.5;
+  ctx.stroke();
+}
+
+function renderMetaDual(m){
+  // Weekly data (simulated from totals)
+  const weeks=['Sem 1','Sem 2','Sem 3','Sem 4'];
+  const fat=m.meta_faturamento||0;
+  const cmp=m.meta_compras||0;
+  const fatW=[fat*.2,fat*.24,fat*.3,fat*.26].map(v=>Math.round(v));
+  const cmpW=[cmp*.2,cmp*.24,cmp*.3,cmp*.26].map(Math.round);
+  mkChart('c-meta-dual',{
+    type:'line',
+    data:{labels:weeks,datasets:[
+      {label:'Faturamento',data:fatW,borderColor:'#34d399',backgroundColor:'rgba(52,211,153,.08)',fill:true,tension:.4,pointRadius:3,pointBackgroundColor:'#34d399',yAxisID:'y'},
+      {label:'Compras',data:cmpW,borderColor:'#fbbf24',backgroundColor:'rgba(251,191,36,.06)',fill:false,tension:.4,pointRadius:3,pointBackgroundColor:'#fbbf24',yAxisID:'y2'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'var(--card2)',borderColor:'var(--border2)',borderWidth:1,titleColor:'var(--text)',bodyColor:'var(--text2)'}},
+      scales:{
+        x:{grid:{color:gridColor},ticks:{font:{size:10}}},
+        y:{grid:{color:gridColor},ticks:{callback:v=>'R$'+Number(v/1000).toFixed(0)+'k',font:{size:10}},position:'left'},
+        y2:{grid:{display:false},ticks:{font:{size:10}},position:'right'},
+      }
+    }
   });
 }
 
 async function loadMetaCampanhas(){
   const {data}=await SB.from('campanhas_meta').select('*').order('investimento',{ascending:false});
   if(!data)return;
-  set('meta-cnt',data.length+' campanhas');
-  document.getElementById('meta-tbody').innerHTML=data.map((c,i)=>`
-    <tr>
-      <td class="tbl-num">${i+1}</td>
-      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;font-weight:500">${c.nome}</td>
-      <td style="color:var(--text2);max-width:140px;overflow:hidden;text-overflow:ellipsis">${c.conjunto||'—'}</td>
-      <td style="color:var(--meta2);font-weight:700">${R(c.investimento)}</td>
-      <td style="color:var(--green2);font-weight:700">${R(c.faturamento)}</td>
-      <td style="font-weight:600">${N(c.compras)}</td>
-      <td style="color:var(--orange2);font-weight:700">${Number(c.roas||0).toFixed(2)}x</td>
-      <td>${Number(c.ctr||0).toFixed(2)}%</td>
-      <td>${R(c.cpc)}</td>
-      <td><span class="badge ${c.status==='ativa'?'b-green':'b-gray'}">${c.status}</span></td>
-    </tr>`).join('');
+  const maxInvest=data[0]?.investimento||1;
+  document.getElementById('meta-camp-list').innerHTML=data.map((c,i)=>{
+    const barPct=Math.round((c.investimento/maxInvest)*100);
+    const isTop=i<3;
+    return `<div style="display:flex;align-items:center;gap:0;border-bottom:1px solid rgba(28,31,46,.5);${isTop?'background:rgba(24,119,242,.04)':''}">
+      <div style="padding:10px 14px;font-size:12px;color:var(--text4);width:28px;flex-shrink:0">${i+1}</div>
+      <div style="flex:1;padding:10px 8px;font-size:12px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px">${c.nome}</div>
+      <div style="width:160px;padding:10px 8px;font-size:11px;color:var(--text3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">${c.conjunto||'—'}</div>
+      <div style="width:140px;padding:10px 8px;font-size:11px;color:var(--text3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">${c.anuncio||'—'}</div>
+      <div class="camp-invest-cell" style="width:100px;flex-shrink:0">
+        <div class="camp-invest-bar" style="width:${barPct}%;background:${isTop?'rgba(24,119,242,.25)':'rgba(24,119,242,.1)'}"></div>
+        <span class="camp-invest-value" style="font-size:12px">${R(c.investimento)}</span>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 // ── GOOGLE PAGE ──
